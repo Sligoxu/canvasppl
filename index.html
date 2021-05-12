@@ -15,17 +15,29 @@
         var canvas = document.getElementById("canvas");
         canvas.width = document.documentElement.clientWidth
         canvas.height = document.documentElement.clientHeight
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'none';
 
-        // 监听页面大小变化
-        console.log(document.body.clientWidth)
-        console.log(document.body.clientHeight)
+        // 设定控制变量
+        let painting = false  // 默认不画
+
         // 鼠标位置获取
+        canvas.onmousedown = () => {
+            painting = true  // 可以画
+        }
         canvas.onmousemove = (e) => {
-            console.log(e.clientX)
-            console.log(e.clientY)
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = 'green';
-            ctx.fillRect(e.clientX-4, e.clientY-4, 8, 8);
+            if (painting === true) {
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 8, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            } else {
+                console.log('none')
+            }
+        }
+        canvas.onmouseup = () => {
+            painting = false
         }
 
     </script>
