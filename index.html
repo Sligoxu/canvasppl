@@ -10,23 +10,22 @@
 </head>
 
 <body>
-    <div id="canvas"></div>
+    <canvas id="canvas"></canvas>
     <script>
-        canvas.onclick = (e) => {
+        var canvas = document.getElementById("canvas");
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+
+        // 监听页面大小变化
+        console.log(document.body.clientWidth)
+        console.log(document.body.clientHeight)
+        // 鼠标位置获取
+        canvas.onmousemove = (e) => {
             console.log(e.clientX)
             console.log(e.clientY)
-            // consloe调试大法
-            let div = document.createElement('div')
-            div.style.position = 'absolute'
-            div.style.left = e.clientX + 'px' 
-            div.style.top = e.clientY + 'px' 
-            div.style.marginLeft = '-4px'
-            div.style.marginTop = '-4px'
-            div.style.borderRadius = '50%'
-            div.style.width = '8px'
-            div.style.height = '8px'
-            div.style.background = 'black'
-            canvas.appendChild(div)
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'green';
+            ctx.fillRect(e.clientX-4, e.clientY-4, 8, 8);
         }
 
     </script>
