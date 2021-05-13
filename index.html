@@ -24,7 +24,7 @@
         function drawline(x1, y1, x2, y2) {
             ctx.beginPath();
             ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
+            ctx.lineTo(x2, y2); // ctx.closePath(); 这句删掉，不然会使lineCap = "round" 失效
             ctx.stroke();
         }
 
